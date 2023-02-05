@@ -1,60 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// using UnityEngine.SceneManagement;
 
 public class DetectRightNote : MonoBehaviour
 {
-//    public AudioSource[] soundFX;
-
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("akey"))
-        {
-            // soundFX[0].Play();
-            
-            
-        }  
-        if (Input.GetButtonDown("skey"))
-        {
-            // soundFX[1].Play();
-            
-        } 
-        if (Input.GetButtonDown("dkey"))
-        {
-            // soundFX[2].Play();
-            
-        } 
-        if (Input.GetButtonDown("fkey"))
-        {
-            // soundFX[3].Play();
-            
-        } 
-        if (Input.GetButtonDown("jkey"))
-        {
-            // soundFX[4].Play();
-            
-        }  
-        if (Input.GetButtonDown("kkey"))
-        {
-            // soundFX[5].Play();
-            
-        } 
-        if (Input.GetButtonDown("lkey"))
-        {
-            // soundFX[6].Play();
-            
-        } 
-        if (Input.GetButtonDown(";key"))
-        {
-            // soundFX[7].Play();
-            
-        } 
-        if (Input.GetButtonDown("spaceKey"))
-        {
-            // soundFX[8].Play();
-            
-        } 
+
+        //detect if image is between -200 and -400
+
+    //list of whats currently in the box
+    // when someting enters the trigger add it to the list
+    //when a key is pressed loop through the list and see if that key corresponds to 
+    // something in the list. if not, fail state
+    // if so, remove that item from teh list.
+    // if something makes it to the ontrigger exit and it's still in the list
+    // then fail state 
+    public List<string> objectsEntered;
+    bool fail;
+    void Start() {
+        objectsEntered = new List<string>();
+        fail = true;
+    }
+
+    void Update () {
+        // Debug.Log("update");
+        if (Input.GetKeyDown(KeyCode.A)) {
+            for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "a") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("a pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.S)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "s") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("s pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.D)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "d") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("d pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.F)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "f") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("f pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.J)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "j") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("j pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.K)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "k") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("k pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.L)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "l") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("l pressed");
+        }
+        if (Input.GetKeyDown(KeyCode.Semicolon)){
+             for (int i = 0; i < objectsEntered.Count;i++){
+                if (objectsEntered[i] == "semicolon") {
+                    objectsEntered.RemoveAt(i);
+                    fail = false;
+                }
+            }
+            Debug.Log("; pressed");
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("I'm the trigger, someone has entered");
+        Debug.Log("other tag is " + other.tag);
+        objectsEntered.Add(other.tag);
+        
+    }
+    
+    private void OnTriggerExit2D(Collider2D other){
+        Debug.Log("OnTriggerExit Event" + other.tag);
+        if (objectsEntered.Contains(other.tag)) {
+            fail = true;
+        }
+        Debug.Log(fail);
     }
 
     // Update is called once per frame

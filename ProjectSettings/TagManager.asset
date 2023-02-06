@@ -13,6 +13,7 @@ TagManager:
   - s
   - l
   - space
+  - bar
   layers:
   - Default
   - TransparentFX

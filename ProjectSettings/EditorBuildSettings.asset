@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Bella2.unity
+    guid: 6394ae70a01294a688a815654dfc1c33
+  - enabled: 1
+    path: Assets/Scenes/endscene.unity
+    guid: de377b94ab1564bca97f267ad9f0cd0d
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/instructions.unity
+    guid: b4224b923224e4249aee77008157bdfe
   m_configObjects: {}

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class DetectRightNote : MonoBehaviour
 {
@@ -17,13 +17,23 @@ public class DetectRightNote : MonoBehaviour
     // if something makes it to the ontrigger exit and it's still in the list
     // then fail state 
     public List<string> objectsEntered;
+    public GameController controller;
     bool fail;
+    public bool endlessMode;
     void Start() {
         objectsEntered = new List<string>();
-        fail = true;
+        fail = false;
+        // endlessMode = false;
     }
-
+    
     void Update () {
+        Debug.Log("endless" + endlessMode);
+
+        if (fail && !endlessMode) {
+            controller.playing = false;
+            SceneManager.LoadScene("Bella2");
+        }
+
         // Debug.Log("update");
         if (Input.GetKeyDown(KeyCode.A)) {
             for (int i = 0; i < objectsEntered.Count;i++){
@@ -99,6 +109,14 @@ public class DetectRightNote : MonoBehaviour
         }
 
     }
+     public void changePLZ()
+     {
+   
+        endlessMode = true;
+ 
+     }
+
+     
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("I'm the trigger, someone has entered");
         Debug.Log("other tag is " + other.tag);
